@@ -24,7 +24,9 @@ async function playSession(req,res){
     console.log(gameId);
     let gameSession=await GameSession.findByPk(gameId);
     await playWordService(gameSession,letter);
-    res.json(await playLogic(gameSession));
+    let response=await playLogic(gameSession);
+    response.id=gameId;
+    res.json(response);
 
 }
 
